@@ -15,7 +15,8 @@ class UserController extends Controller
 
     public function bookingHistory()
     {
-        $bookings = collect();
+        $user = Auth::user();
+        $bookings = $user->bookings()->with('schedule.movie')->latest()->get();
         return view('user.history', compact('bookings'));
     }
 }
