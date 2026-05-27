@@ -30,6 +30,11 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
