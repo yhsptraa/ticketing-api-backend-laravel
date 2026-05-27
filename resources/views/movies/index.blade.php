@@ -1,6 +1,10 @@
-<h1>MOVIE LIST</h1>
+@extends('layouts.app')
 
-<a href="/movies/create">Tambah Movie</a>
+@section('title', 'Movies - CineTicket')
+
+@section('content')
+
+<h1>MOVIE LIST</h1>
 
 <hr>
 
@@ -36,3 +40,5 @@
     <hr>
 
 @endforeach
+
+@endsection
