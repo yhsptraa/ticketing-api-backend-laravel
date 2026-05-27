@@ -1,28 +1,21 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riwayat Booking - CineTicket</title>
-</head>
-<body>
-    <h1>Riwayat Booking</h1>
+@extends('layouts.app')
 
-    <a href="{{ route('user.profile') }}">Kembali ke Profil</a>
+@section('title', 'Booking History - CineTicket')
 
-    <br><br>
+@section('content')
+    <h1>Booking History</h1>
 
     @if ($bookings->isEmpty())
-        <p>Belum ada booking.</p>
+        <p>No bookings yet.</p>
     @else
         <table border="1" cellpadding="8">
             <thead>
                 <tr>
-                    <th>Film</th>
+                    <th>Movie</th>
                     <th>Studio</th>
-                    <th>Tanggal</th>
-                    <th>Jam</th>
-                    <th>Kursi</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Seat</th>
                     <th>Total</th>
                     <th>Status</th>
                 </tr>
@@ -42,5 +35,4 @@
             </tbody>
         </table>
     @endif
-</body>
-</html>
+@endsection
