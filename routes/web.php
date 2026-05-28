@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ScheduleController;
 
-Route::get('/', fn() => redirect()->route('login'));
+Route::get('/', fn() => redirect()->route('movies.index'));
 
 // Auth routes
 Route::middleware('guest')->group(function () {
@@ -18,12 +18,14 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-// Customer routes
+// Public routes (tanpa login)
+Route::resource('movies', MovieController::class)->only(['index', 'show']);
+Route::resource('schedules', ScheduleController::class)->only(['index', 'show']);
+
+// Customer routes (butuh login)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
     Route::get('/history', [UserController::class, 'bookingHistory'])->name('user.history');
-    Route::resource('movies', MovieController::class)->only(['index', 'show']);
-    Route::resource('schedules', ScheduleController::class)->only(['index', 'show']);
 });
 
 // Admin routes

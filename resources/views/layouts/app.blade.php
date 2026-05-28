@@ -11,12 +11,17 @@
     <strong>CineTicket</strong>
     &nbsp;&nbsp;
     <a href="{{ route('movies.index') }}">Movies</a> |
-    <a href="{{ route('user.profile') }}">Profile</a> |
-    <a href="{{ route('user.history') }}">Booking History</a> |
-    <form method="POST" action="{{ route('logout') }}" style="display:inline;">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
+    @auth
+        <a href="{{ route('user.profile') }}">Profile</a> |
+        <a href="{{ route('user.history') }}">Booking History</a> |
+        <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+            @csrf
+            <button type="submit">Logout</button>
+        </form>
+    @else
+        <a href="{{ route('login') }}">Login</a> |
+        <a href="{{ route('register') }}">Register</a>
+    @endauth
 </nav>
 
 <hr>

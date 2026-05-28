@@ -15,8 +15,6 @@
                     <th>Studio</th>
                     <th>Date</th>
                     <th>Time</th>
-                    <th>Seat</th>
-                    <th>Total</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -27,9 +25,7 @@
                         <td>{{ $booking->schedule->studio }}</td>
                         <td>{{ $booking->schedule->date }}</td>
                         <td>{{ $booking->schedule->time }}</td>
-                        <td>{{ $booking->seat_number }}</td>
-                        <td>Rp {{ number_format($booking->total_price, 0, ',', '.') }}</td>
-                        <td>{{ ucfirst($booking->payment_status) }}</td>
+                        <td>{{ ucfirst($booking->status) }}</td>
                     </tr>
                 @endforeach
             </tbody>
