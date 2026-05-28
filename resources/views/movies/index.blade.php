@@ -22,7 +22,7 @@
 
     |
 
-    <a href="/movies/{{ $movie->id }}/edit">
+   <a href="/admin/movies/{{ $movie->id }}/edit">
         Edit
     </a>
 
