@@ -1,6 +1,6 @@
 <h1>SCHEDULE LIST</h1>
 
-<a href="/schedules/create">Tambah Schedule</a>
+<a href="/admin/schedules/create">Tambah Schedule</a>
 
 <hr>
 
@@ -14,23 +14,19 @@
 
     <p>Harga : Rp {{ $schedule->price }}</p>
 
-    <a href="/schedules/{{ $schedule->id }}/edit">
+    <a href="{{ route('admin.schedules.edit', $schedule->id) }}">
         Edit
     </a>
 
     |
 
-    <form action="/schedules/{{ $schedule->id }}"
-        method="POST"
-        style="display:inline;">
-
+    <form action="{{ route('admin.schedules.destroy', $schedule->id) }}" method="POST" style="display:inline;">
         @csrf
         @method('DELETE')
 
         <button type="submit">
             Delete
         </button>
-
     </form>
 
     <hr>

@@ -1,6 +1,6 @@
 <h1>Tambah Schedule</h1>
 
-<form action="/schedules" method="POST">
+<form action="/admin/schedules" method="POST">
     @csrf
 
     <select name="movie_id">

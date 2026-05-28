@@ -34,36 +34,44 @@ class ScheduleController
 
         return redirect('/schedules');
     }
+
+    // detail schedule
+    public function show($id)
+    {
+        $schedule = Schedule::findOrFail($id);
+        return view('schedules.show', compact('schedule'));
+    }
+
     // form edit
-public function edit($id)
-{
-    $schedule = Schedule::findOrFail($id);
-    $movies = Movie::all();
+    public function edit($id)
+    {
+        $schedule = Schedule::findOrFail($id);
+        $movies = Movie::all();
 
-    return view('schedules.edit', compact('schedule', 'movies'));
-}
+        return view('schedules.edit', compact('schedule', 'movies'));
+    }
 
-// update schedule
-public function update(Request $request, $id)
-{
-    $schedule = Schedule::findOrFail($id);
+    // update schedule
+    public function update(Request $request, $id)
+    {
+        $schedule = Schedule::findOrFail($id);
 
-    $schedule->update([
-        'movie_id' => $request->movie_id,
-        'studio' => $request->studio,
-        'show_time' => $request->show_time,
-        'price' => $request->price
-    ]);
+        $schedule->update([
+            'movie_id' => $request->movie_id,
+            'studio' => $request->studio,
+            'show_time' => $request->show_time,
+            'price' => $request->price
+        ]);
 
-    return redirect('/schedules');
-}
+        return redirect('/schedules');
+    }
 
-// delete schedule
-public function destroy($id)
-{
-    $schedule = Schedule::findOrFail($id);
-    $schedule->delete();
+    // delete schedule
+    public function destroy($id)
+    {
+        $schedule = Schedule::findOrFail($id);
+        $schedule->delete();
 
-    return redirect('/schedules');
-}
+        return redirect('/schedules');
+    }
 }
