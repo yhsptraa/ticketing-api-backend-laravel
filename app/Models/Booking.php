@@ -19,4 +19,8 @@ class Booking extends Model {
     public function schedule(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
         return $this->belongsTo(Schedule::class);
     }
+
+    public function seat(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
+        return $this->belongsTo(Seat::class);
+    }
 }

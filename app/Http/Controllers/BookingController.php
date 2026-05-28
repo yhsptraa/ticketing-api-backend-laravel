@@ -29,14 +29,22 @@ class BookingController extends Controller {
     }
 
     public function selectSchedule(int $movieId) {
-        
+        $schedules = Schedule::with('movie')
+            ->where('movie_id', $movieId)
+            ->where('show_date', '>=', today())
+            ->orderBy('show_time')
+            ->get();
+
+            return view('booking.select-schedule', compact('schedules'));
     }
 
     public function selectSeat(int $scheduleId) {
+        $schedule = Schedule::with('movie')->findOrFail($scheduleId);
 
-    }
-    
-    public function ticketDetail(int $bookingId) {
+        $seats = Seat::where('schedule_id', $scheduleId)
+            ->orderBy('seat_number')
+            ->get();
 
+        return view('booking.select-seat', compact('schedule', 'seats'));
     }
 }
