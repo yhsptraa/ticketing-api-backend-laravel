@@ -20,6 +20,8 @@
         Detail
     </a>
 
+    @if(auth()->check() && auth()->user()->role == 'admin')
+
     |
 
     <a href="{{ route('admin.movies.edit', $movie->id) }}">
@@ -37,8 +39,12 @@
         </button>
     </form>
 
+    @endif
+
     <hr>
 
 @endforeach
 
 @endsection
+
+

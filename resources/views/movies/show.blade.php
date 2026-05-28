@@ -1,11 +1,29 @@
 <h1>{{ $movie->title }}</h1>
 
-<p>Genre : {{ $movie->genre }}</p>
+<img src="{{ $movie->poster }}" width="200">
 
-<p>Duration : {{ $movie->duration }} menit</p>
+<p>{{ $movie->description }}</p>
 
-<p>Description : {{ $movie->description }}</p>
+<p>Genre: {{ $movie->genre }}</p>
 
-<a href="/movies">
-    Kembali
-</a>
+<p>Duration: {{ $movie->duration }} menit</p>
+
+<hr>
+
+<h2>Schedule</h2>
+
+@foreach ($movie->schedules as $schedule)
+
+    <p>Studio : {{ $schedule->studio }}</p>
+
+    <p>Jam : {{ $schedule->show_time }}</p>
+
+    <p>Harga : Rp {{ $schedule->price }}</p>
+
+    <button>
+        Buy Ticket
+    </button>
+
+    <hr>
+
+@endforeach
