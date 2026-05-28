@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin routes
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('movies', MovieController::class)->except(['index', 'show']);
     Route::resource('schedules', ScheduleController::class)->except(['index', 'show']);
     Route::resource('studios', StudioController::class);
