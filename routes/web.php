@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\StudioController;
 
 Route::get('/', fn() => redirect()->route('movies.index'));
 
@@ -32,4 +33,5 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('movies', MovieController::class)->except(['index', 'show']);
     Route::resource('schedules', ScheduleController::class)->except(['index', 'show']);
+    Route::resource('studios', StudioController::class);
 });
