@@ -22,13 +22,13 @@
 
     |
 
-    <a href="/movies/{{ $movie->id }}/edit">
+    <a href="{{ route('admin.movies.edit', $movie->id) }}">
         Edit
     </a>
 
     |
 
-    <form action="/movies/{{ $movie->id }}" method="POST" style="display:inline;">
+    <form action="{{ route('admin.movies.destroy', $movie->id) }}" method="POST" style="display:inline;">
         @csrf
         @method('DELETE')
 

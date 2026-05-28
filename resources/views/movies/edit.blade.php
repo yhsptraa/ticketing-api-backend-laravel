@@ -1,6 +1,6 @@
 <h1>Edit Movie</h1>
 
-<form action="/movies/{{ $movie->id }}" method="POST">
+<form action="/admin/movies/{{ $movie->id }}" method="POST">
     @csrf
     @method('PUT')
 

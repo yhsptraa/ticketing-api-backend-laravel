@@ -1,6 +1,6 @@
 <h1>Tambah Movie</h1>
 
-<form action="/movies" method="POST">
+<form action="/admin/movies" method="POST">
     @csrf
 
     <input type="text" name="title" placeholder="Title">
