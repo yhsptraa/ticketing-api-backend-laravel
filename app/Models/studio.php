@@ -12,4 +12,9 @@ class Studio extends Model
         'description',
         'is_active',
     ];
+
+    public function seats()
+    {
+        return $this->hasMany(Seat::class);
+    }
 }
