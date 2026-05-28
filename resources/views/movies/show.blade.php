@@ -20,6 +20,27 @@
 
     <p>Harga : Rp {{ $schedule->price }}</p>
 
+    @if(auth()->check() && auth()->user()->role == 'admin')
+
+        <a href="{{ route('admin.schedules.edit', $schedule->id) }}">
+            Edit Schedule
+        </a>
+
+        |
+
+        <form action="{{ route('admin.schedules.destroy', $schedule->id) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('DELETE')
+
+            <button type="submit">
+                Delete Schedule
+            </button>
+        </form>
+
+        <br><br>
+
+    @endif
+
     @if(auth()->check())
 
         <button>
