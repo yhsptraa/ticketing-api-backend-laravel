@@ -20,9 +20,21 @@
 
     <p>Harga : Rp {{ $schedule->price }}</p>
 
-    <button>
-        Buy Ticket
-    </button>
+    @if(auth()->check())
+
+        <button>
+            Buy Ticket
+        </button>
+
+    @else
+
+        <a href="/login">
+            <button>
+                Buy Ticket
+            </button>
+        </a>
+
+    @endif
 
     <hr>
 
