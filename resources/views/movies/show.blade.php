@@ -1,3 +1,9 @@
+@extends('layouts.app')
+
+@section('title', $movie->title . ' - CineTicket')
+
+@section('content')
+
 <h1>{{ $movie->title }}</h1>
 
 <img src="{{ $movie->poster }}" width="200">
@@ -60,3 +66,5 @@
     <hr>
 
 @endforeach
+
+@endsection

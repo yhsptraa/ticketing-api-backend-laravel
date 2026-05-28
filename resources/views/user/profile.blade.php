@@ -9,4 +9,7 @@
     <p><strong>Email:</strong> {{ $user->email }}</p>
     <p><strong>Role:</strong> {{ ucfirst($user->role) }}</p>
     <p><strong>Joined:</strong> {{ $user->created_at->format('d M Y') }}</p>
+
+    <br>
+    <a href="{{ route('user.profile.edit') }}">Edit Profile</a>
 @endsection

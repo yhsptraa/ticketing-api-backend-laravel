@@ -1,6 +1,14 @@
+@extends('layouts.app')
+
+@section('title', 'Schedules - CineTicket')
+
+@section('content')
+
 <h1>SCHEDULE LIST</h1>
 
-<a href="/admin/schedules/create">Tambah Schedule</a>
+@if(auth()->check() && auth()->user()->role == 'admin')
+    <a href="/admin/schedules/create">Tambah Schedule</a>
+@endif
 
 <hr>
 
@@ -36,3 +44,5 @@
     <hr>
 
 @endforeach
+
+@endsection

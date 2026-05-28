@@ -26,6 +26,8 @@ Route::resource('schedules', ScheduleController::class)->only(['index', 'show'])
 // Customer routes (butuh login)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('user.profile.edit');
+    Route::put('/profile', [UserController::class, 'updateProfile'])->name('user.profile.update');
     Route::get('/history', [UserController::class, 'bookingHistory'])->name('user.history');
 });
 
