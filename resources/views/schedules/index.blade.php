@@ -1,10 +1,10 @@
-<a href="/admin/schedules/{{ $schedule->id }}/edit">
+<a href="{{ route('admin.schedules.edit', $schedule->id) }}">
     Edit
 </a>
 
 |
 
-<form action="/admin/schedules/{{ $schedule->id }}" method="POST" style="display:inline;">
+<form action="{{ route('admin.schedules.destroy', $schedule->id) }}" method="POST" style="display:inline;">
     @csrf
     @method('DELETE')
 
