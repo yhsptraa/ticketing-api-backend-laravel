@@ -11,6 +11,7 @@
     <strong>CineTicket</strong>
     &nbsp;&nbsp;
     <a href="{{ route('movies.index') }}">Movies</a> |
+    <a href="{{ route('studios.index') }}">Studios</a> |
     @auth
         <a href="{{ route('user.profile') }}">Profile</a> |
         <a href="{{ route('user.history') }}">Booking History</a> |

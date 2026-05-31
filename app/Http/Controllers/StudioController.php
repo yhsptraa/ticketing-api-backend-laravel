@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Studio;
 
-class StudioController extends Controller
+class StudioController
 {
     public function index()
     {
