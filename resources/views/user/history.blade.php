@@ -13,8 +13,7 @@
                 <tr>
                     <th>Movie</th>
                     <th>Studio</th>
-                    <th>Date</th>
-                    <th>Time</th>
+                    <th>Show Time</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -23,8 +22,7 @@
                     <tr>
                         <td>{{ $booking->schedule->movie->title }}</td>
                         <td>{{ $booking->schedule->studio }}</td>
-                        <td>{{ $booking->schedule->date }}</td>
-                        <td>{{ $booking->schedule->time }}</td>
+                        <td>{{ $booking->schedule->show_time }}</td>
                         <td>{{ ucfirst($booking->status) }}</td>
                     </tr>
                 @endforeach
