@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\StudioController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Admin\StudioController as AdminStudioController;
 
 Route::get('/', fn() => redirect()->route('movies.index'));
@@ -29,6 +30,8 @@ Route::resource('studios', StudioController::class);
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
     Route::get('/history', [UserController::class, 'bookingHistory'])->name('user.history');
+    Route::post('/movies/{movie}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 });
 
 // Admin routes

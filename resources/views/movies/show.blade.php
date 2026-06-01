@@ -67,4 +67,57 @@
 
 @endforeach
 
+<h2>Reviews</h2>
+
+@if (session('success'))
+    <p style="color: green;">{{ session('success') }}</p>
+@endif
+
+@forelse ($movie->reviews as $review)
+    <p><strong>{{ $review->user->name }}</strong> — Rating: {{ $review->rating }}/5</p>
+    <p>{{ $review->comment }}</p>
+    @if(auth()->check() && auth()->user()->id == $review->user_id)
+        <form action="{{ route('reviews.destroy', $review->id) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Hapus Review</button>
+        </form>
+    @endif
+    <hr>
+@empty
+    <p>Belum ada review untuk film ini.</p>
+    <hr>
+@endforelse
+
+@auth
+    @if(!$movie->reviews->where('user_id', auth()->id())->count())
+        <h3>Tulis Review</h3>
+        @if ($errors->any())
+            <ul style="color: red;">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+        <form method="POST" action="{{ route('reviews.store', $movie->id) }}">
+            @csrf
+            <div>
+                <label>Rating (1-5)</label><br>
+                <input type="number" name="rating" min="1" max="5" value="{{ old('rating') }}" required>
+            </div>
+            <br>
+            <div>
+                <label>Komentar</label><br>
+                <textarea name="comment" rows="4" required>{{ old('comment') }}</textarea>
+            </div>
+            <br>
+            <button type="submit">Kirim Review</button>
+        </form>
+    @else
+        <p>Kamu sudah memberikan review untuk film ini.</p>
+    @endif
+@else
+    <p><a href="{{ route('login') }}">Login</a> untuk memberikan review.</p>
+@endauth
+
 @endsection
