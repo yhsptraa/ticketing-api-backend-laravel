@@ -116,8 +116,6 @@
     @else
         <p>Kamu sudah memberikan review untuk film ini.</p>
     @endif
-@else
-    <p><a href="{{ route('login') }}">Login</a> untuk memberikan review.</p>
 @endauth
 
 @endsection
