@@ -19,9 +19,10 @@ class StudioController
             'studio_name' => $request->studio_name, 
             'capacity' => $request->capacity,
             'description' => $request->description,
-            'is_active' => $request->is_active
+            'is_active' => $request->is_active,
+            'image' => $request->studio_image,
         ]);
-        return redirect('/studios');
+        return redirect('/admin/studios');
     }
 
     public function show($id)
@@ -45,13 +46,13 @@ class StudioController
     {
         $studio = Studio::findOrFail($id);
         $studio->update($request->all());
-        return redirect('studios');
+        return redirect('/admin/studios');
     }
 
     public function destroy(string $id)
     {
         $studio = Studio::findOrFail($id);
         $studio->delete();
-        return redirect('/studios');
+        return redirect('/admin/studios');
     }
 }

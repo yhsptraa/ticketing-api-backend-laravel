@@ -10,6 +10,10 @@
     @csrf
     @method('PUT')
 
+    <label>Image URL</label><br>
+    <input type="text" name="studio_image" value="{{ $studio->image }}">
+    <br><br>
+
     <label>Studio Name</label><br>
     <input type="text" name="studio_name" value="{{ $studio->studio_name }}" required>
     <br><br>
@@ -19,7 +23,7 @@
     <br><br>
 
     <label>Description</label><br>
-    <input textarea name="description" value="{{ $studio->description }}"></textarea>
+    <textarea name="description" value="{{ $studio->description }}"></textarea>
     <br><br>
 
     <label>Status</label><br>
@@ -32,7 +36,7 @@
     <button type="submit">
         Save
     </button>
-    
+
 </form>
 
 @endsection

@@ -11,6 +11,7 @@ class Studio extends Model
         'capacity',
         'description',
         'is_active',
+        'image',
     ];
 
     public function seats()

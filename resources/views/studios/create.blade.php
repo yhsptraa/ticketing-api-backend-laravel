@@ -8,6 +8,9 @@
 
 <form action="/admin/studios" method="POST">
     @csrf
+    <label>Image URL</label><br>
+    <input type="text" name="studio_image">
+    <br><br>
 
     <label>Studio Name</label><br>
     <input type="text" name="studio_name" required>

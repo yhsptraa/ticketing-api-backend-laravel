@@ -7,10 +7,16 @@
 <h1>STUDIO LIST</h1>
 
 @if(auth()->check() && auth()->user()->role == 'admin')
-    <a href="/admin/studios/create">Tambah Studio</a>
+    <a href="/admin/studios/create">Tambah Studio</a><br><br>
 @endif
 
 @foreach ($studios as $studio)
+
+    <td>
+        @if($studio->image)
+            <img src="{{ $studio->image }}" width="300">
+        @endif
+    </td>
 
     <h2>{{ $studio->name }}</h2>
 
