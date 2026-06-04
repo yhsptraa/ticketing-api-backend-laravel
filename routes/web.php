@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\StudioController;
+use App\Http\Controllers\SeatController;
 use App\Http\Controllers\ReviewController;
 
 Route::get('/', fn() => redirect()->route('movies.index'));
@@ -24,6 +25,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::resource('movies', MovieController::class)->only(['index', 'show']);
 Route::resource('schedules', ScheduleController::class)->only(['index', 'show']);
 Route::resource('studios', StudioController::class)->only(['index', 'show']);
+Route::resource('seats', SeatController::class)->only(['index', 'show']);
 
 // Customer routes (butuh login)
 Route::middleware('auth')->group(function () {
@@ -41,4 +43,5 @@ Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix
     Route::resource('movies', MovieController::class)->except(['index', 'show']);
     Route::resource('schedules', ScheduleController::class)->except(['index', 'show']);
     Route::resource('studios', StudioController::class)->except(['show']);
+    Route::resource('seats', SeatController::class)->except(['show']);
 });
