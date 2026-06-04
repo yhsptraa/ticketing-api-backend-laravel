@@ -102,8 +102,12 @@
         <form method="POST" action="{{ route('reviews.store', $movie->id) }}">
             @csrf
             <div>
-                <label>Rating (1-5)</label><br>
-                <input type="number" name="rating" min="1" max="5" value="{{ old('rating') }}" required>
+                <label>Rating</label><br>
+                <label><input type="radio" name="rating" value="1" required> ⭐</label>
+                <label><input type="radio" name="rating" value="2"> ⭐⭐</label>
+                <label><input type="radio" name="rating" value="3"> ⭐⭐⭐</label>
+                <label><input type="radio" name="rating" value="4"> ⭐⭐⭐⭐</label>
+                <label><input type="radio" name="rating" value="5"> ⭐⭐⭐⭐⭐</label>
             </div>
             <br>
             <div>

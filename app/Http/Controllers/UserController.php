@@ -49,6 +49,13 @@ class UserController extends Controller
         return redirect()->route('user.profile')->with('success', 'Profil berhasil diperbarui.');
     }
 
+    public function myReviews()
+    {
+        $user    = Auth::user();
+        $reviews = $user->reviews()->with('movie')->latest()->get();
+        return view('user.reviews', compact('reviews'));
+    }
+
     public function bookingHistory()
     {
         $user     = Auth::user();

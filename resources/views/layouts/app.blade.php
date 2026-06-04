@@ -15,6 +15,7 @@
     @auth
         <a href="{{ route('user.profile') }}">Profile</a> |
         <a href="{{ route('user.history') }}">Booking History</a> |
+        <a href="{{ route('user.reviews') }}">My Reviews</a> |
         <form method="POST" action="{{ route('logout') }}" style="display:inline;">
             @csrf
             <button type="submit">Logout</button>
