@@ -23,7 +23,35 @@ class ReviewController extends Controller
             'comment'  => $request->comment,
         ]);
 
-        return redirect()->back()->with('success', 'Review berhasil ditambahkan.');
+        return redirect()->back()->with('success', 'Review added successfully.');
+    }
+
+    public function edit(Review $review)
+    {
+        if ($review->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        return view('user.edit-review', compact('review'));
+    }
+
+    public function update(Request $request, Review $review)
+    {
+        if ($review->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $request->validate([
+            'rating'  => 'required|integer|min:1|max:5',
+            'comment' => 'required|string|max:1000',
+        ]);
+
+        $review->update([
+            'rating'  => $request->rating,
+            'comment' => $request->comment,
+        ]);
+
+        return redirect()->route('user.reviews')->with('success', 'Review updated successfully.');
     }
 
     public function destroy(Review $review)
@@ -34,6 +62,6 @@ class ReviewController extends Controller
 
         $review->delete();
 
-        return redirect()->back()->with('success', 'Review berhasil dihapus.');
+        return redirect()->back()->with('success', 'Review deleted successfully.');
     }
 }

@@ -23,7 +23,7 @@
     @method('PUT')
 
     <div>
-        <label for="name">Nama</label><br>
+        <label for="name">Name</label><br>
         <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}" required>
     </div>
 
@@ -36,32 +36,32 @@
 
     <br>
 
-    <h3>Ganti Password (opsional)</h3>
+    <h3>Change Password (optional)</h3>
 
     <div>
-        <label for="current_password">Password Lama</label><br>
+        <label for="current_password">Current Password</label><br>
         <input type="password" id="current_password" name="current_password">
     </div>
 
     <br>
 
     <div>
-        <label for="password">Password Baru</label><br>
+        <label for="password">New Password</label><br>
         <input type="password" id="password" name="password">
     </div>
 
     <br>
 
     <div>
-        <label for="password_confirmation">Konfirmasi Password Baru</label><br>
+        <label for="password_confirmation">Confirm New Password</label><br>
         <input type="password" id="password_confirmation" name="password_confirmation">
     </div>
 
     <br>
 
-    <button type="submit">Simpan Perubahan</button>
+    <button type="submit">Save Changes</button>
     &nbsp;
-    <a href="{{ route('user.profile') }}">Batal</a>
+    <a href="{{ route('user.profile') }}">Cancel</a>
 </form>
 
 @endsection

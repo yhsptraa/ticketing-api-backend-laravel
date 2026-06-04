@@ -12,7 +12,7 @@
 
 <p>Genre: {{ $movie->genre }}</p>
 
-<p>Duration: {{ $movie->duration }} menit</p>
+<p>Duration: {{ $movie->duration }} minutes</p>
 
 <hr>
 
@@ -22,9 +22,9 @@
 
     <p>Studio : {{ $schedule->studio }}</p>
 
-    <p>Jam : {{ $schedule->show_time }}</p>
+    <p>Time : {{ $schedule->show_time }}</p>
 
-    <p>Harga : Rp {{ $schedule->price }}</p>
+    <p>Price : Rp {{ $schedule->price }}</p>
 
     @if(auth()->check() && auth()->user()->role == 'admin')
 
@@ -80,18 +80,18 @@
         <form action="{{ route('reviews.destroy', $review->id) }}" method="POST" style="display:inline;">
             @csrf
             @method('DELETE')
-            <button type="submit">Hapus Review</button>
+            <button type="submit">Delete Review</button>
         </form>
     @endif
     <hr>
 @empty
-    <p>Belum ada review untuk film ini.</p>
+    <p>No reviews yet.</p>
     <hr>
 @endforelse
 
 @auth
     @if(!$movie->reviews->where('user_id', auth()->id())->count())
-        <h3>Tulis Review</h3>
+        <h3>Write a Review</h3>
         @if ($errors->any())
             <ul style="color: red;">
                 @foreach ($errors->all() as $error)
@@ -111,14 +111,14 @@
             </div>
             <br>
             <div>
-                <label>Komentar</label><br>
+                <label>Comment</label><br>
                 <textarea name="comment" rows="4" required>{{ old('comment') }}</textarea>
             </div>
             <br>
-            <button type="submit">Kirim Review</button>
+            <button type="submit">Submit Review</button>
         </form>
     @else
-        <p>Kamu sudah memberikan review untuk film ini.</p>
+        <p>You have already reviewed this movie.</p>
     @endif
 @endauth
 

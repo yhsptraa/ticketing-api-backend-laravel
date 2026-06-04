@@ -26,7 +26,7 @@ class AuthController
             return redirect()->route('movies.index');
         }
 
-        return back()->withErrors(['email' => 'Email atau password salah.'])->withInput();
+        return back()->withErrors(['email' => 'Invalid email or password.'])->withInput();
     }
 
     public function showRegister()
@@ -49,7 +49,7 @@ class AuthController
             'role'     => 'customer',
         ]);
 
-        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
+        return redirect()->route('login')->with('success', 'Registration successful! Please login.');
     }
 
     public function logout(Request $request)

@@ -41,6 +41,6 @@
     </form>
 
     <br>
-    <p>Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a></p>
+    <p>Don't have an account? <a href="{{ route('register') }}">Register here</a></p>
 </body>
 </html>

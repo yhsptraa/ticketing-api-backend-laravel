@@ -33,7 +33,7 @@ class UserController extends Controller
 
         if ($request->filled('current_password')) {
             if (!Hash::check($request->current_password, $user->password)) {
-                return back()->withErrors(['current_password' => 'Password lama tidak sesuai.']);
+                return back()->withErrors(['current_password' => 'Current password is incorrect.']);
             }
         }
 
@@ -46,7 +46,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('user.profile')->with('success', 'Profil berhasil diperbarui.');
+        return redirect()->route('user.profile')->with('success', 'Profile updated successfully.');
     }
 
     public function myReviews()

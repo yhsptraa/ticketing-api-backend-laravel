@@ -20,7 +20,7 @@
         @csrf
 
         <div>
-            <label for="name">Nama</label><br>
+            <label for="name">Name</label><br>
             <input type="text" id="name" name="name" value="{{ old('name') }}" required>
         </div>
 
@@ -41,16 +41,16 @@
         <br>
 
         <div>
-            <label for="password_confirmation">Konfirmasi Password</label><br>
+            <label for="password_confirmation">Confirm Password</label><br>
             <input type="password" id="password_confirmation" name="password_confirmation" required>
         </div>
 
         <br>
 
-        <button type="submit">Daftar</button>
+        <button type="submit">Register</button>
     </form>
 
     <br>
-    <p>Sudah punya akun? <a href="{{ route('login') }}">Login di sini</a></p>
+    <p>Already have an account? <a href="{{ route('login') }}">Login here</a></p>
 </body>
 </html>
