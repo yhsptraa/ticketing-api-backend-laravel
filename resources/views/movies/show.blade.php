@@ -14,6 +14,17 @@
 
 <p>Duration: {{ $movie->duration }} minutes</p>
 
+@auth
+<form action="{{ route('watchlist.store', $movie->id) }}" method="POST" style="display:inline;">
+    @csrf
+    <button type="submit">
+        Add to Watchlist
+    </button>
+</form>
+@endauth
+
+<hr>
+
 <hr>
 
 <h2>Schedule</h2>
