@@ -8,6 +8,7 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\StudioController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\WatchlistController;
 
 Route::get('/', fn() => redirect()->route('movies.index'));
 
