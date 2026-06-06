@@ -15,10 +15,10 @@
 <p>Duration: {{ $movie->duration }} minutes</p>
 
 @auth
-<form action="{{ route('watchlist.store', $movie->id) }}" method="POST" style="display:inline;">
+<form action="{{ route('watchlist.store', $movie->id) }}" method="POST">
     @csrf
     <button type="submit">
-        Add to Watchlist
+        ❤️ Add to Watchlist
     </button>
 </form>
 @endauth
@@ -88,6 +88,8 @@
     <p><strong>{{ $review->user->name }}</strong> — Rating: {{ $review->rating }}/5</p>
     <p>{{ $review->comment }}</p>
     @if(auth()->check() && auth()->user()->id == $review->user_id)
+        <a href="{{ route('reviews.edit', $review->id) }}">Edit Review</a>
+        |
         <form action="{{ route('reviews.destroy', $review->id) }}" method="POST" style="display:inline;">
             @csrf
             @method('DELETE')
@@ -113,12 +115,19 @@
         <form method="POST" action="{{ route('reviews.store', $movie->id) }}">
             @csrf
             <div>
-                <label>Rating</label><br>
-                <label><input type="radio" name="rating" value="1" required> ⭐</label>
-                <label><input type="radio" name="rating" value="2"> ⭐⭐</label>
-                <label><input type="radio" name="rating" value="3"> ⭐⭐⭐</label>
-                <label><input type="radio" name="rating" value="4"> ⭐⭐⭐⭐</label>
-                <label><input type="radio" name="rating" value="5"> ⭐⭐⭐⭐⭐</label>
+                <input type="radio" name="rating" value="1" required> ⭐
+            </div>
+            <div>
+                <input type="radio" name="rating" value="2"> ⭐⭐
+            </div>
+            <div>
+                <input type="radio" name="rating" value="3"> ⭐⭐⭐
+            </div>
+            <div>
+                <input type="radio" name="rating" value="4"> ⭐⭐⭐⭐
+            </div>
+            <div>
+                <input type="radio" name="rating" value="5"> ⭐⭐⭐⭐⭐
             </div>
             <br>
             <div>

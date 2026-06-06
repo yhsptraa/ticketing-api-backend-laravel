@@ -1,29 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
+
 <h1>My Watchlist</h1>
 
-@forelse ($watchlists as $watchlist)
+<hr>
 
-    <div>
-        <h3>{{ $watchlist->movie->title }}</h3>
+<div style="display:flex; flex-wrap:wrap; gap:30px;">
 
-        <form action="{{ route('watchlist.destroy', $watchlist->id) }}"
-              method="POST">
-            @csrf
-            @method('DELETE')
+    @forelse ($watchlists as $watchlist)
 
-            <button type="submit">
-                Remove
-            </button>
-        </form>
-    </div>
+        <div style="width:220px;">
 
-    <hr>
+            <img src="{{ $watchlist->movie->poster }}" width="200">
 
-@empty
+            <h2>{{ $watchlist->movie->title }}</h2>
 
-    <p>No movies in your watchlist.</p>
+            <form action="{{ route('watchlist.destroy', $watchlist->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
 
-@endforelse
+                <button type="submit">
+                    🖤 Remove from Watchlist
+                </button>
+            </form>
+
+        </div>
+
+    @empty
+
+        <p>No movies in your watchlist.</p>
+
+    @endforelse
+
+</div>
+
 @endsection
