@@ -20,10 +20,18 @@ class SeatController extends Controller
         return view('seats.create', compact('studios'));
     }
 
-    public function store(Request $request)
-    {
-        Seat::create($request->all());
-        return redirect('/admin/seats');
+    public function store(Request $request){
+        for ($i = 0; $i < $request->rows; $i++) {
+            $rowLetter = chr(65 + $i);
+            for ($j = 1; $j <= $request->columns; $j++) {
+                Seat::create([
+                    'studio_id' => $request->studio_id,
+                    'seat_number' => $rowLetter . $j,
+                    'is_available' => true,
+                ]);
+            }
+        }
+    return redirect('/admin/seats');
     }
 
     public function edit($id)
@@ -43,6 +51,7 @@ class SeatController extends Controller
     public function destroy(string $id)
     {
         $seat = Seat::findOrFail($id);
+        $seat->delete();
         return redirect('/admin/seats');
     }
 
