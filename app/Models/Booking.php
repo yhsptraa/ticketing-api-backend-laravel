@@ -5,22 +5,39 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model {
+
     protected $fillable = [
+        'booking_code',
         'user_id',
-        'booking_id',
+        'schedule_id',
+        'total_seats',
         'total_price', 
-        'status'
+        'status',
+        'booked_at',
+        'expired_at',
     ];
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
+    protected $casts = [
+        'booked_at' => 'datetime',
+        'expired_at' => 'datetime',
+        'total_price' => 'decimal:2'
+    ];
+
+    public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
 
-    public function schedule(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
+    public function schedule(): BelongsTo {
         return $this->belongsTo(Schedule::class);
     }
 
-    public function seat(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
-        return $this->belongsTo(Seat::class);
+
+    public function seats(): BelongsToMany {
+        return $this->belongsToManny(Seat::class, 'booking_seats')
+                    ->withPivot('price')
+                    ->withTimestamps();
     }
+
+    // payment func
+
 }

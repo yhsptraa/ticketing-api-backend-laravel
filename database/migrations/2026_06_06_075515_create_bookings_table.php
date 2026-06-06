@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('schedule_id');
-            $table->string('status');
+            $table->string('booking_code', 8)->unique();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('schedule_id')->constrained()->cascadeOnDelete();
+            $table->integer('total_seats');
+            $table->decimal('total_price');
+            $table->enum('status',['pending', 'confirmed', 'cancelled'])->default('pending');
+            $table->timestamp('booked_at')->useCurrent();
+            $table->timestamp('expired_at')->nullable();
             $table->timestamps();
         });
     }
