@@ -6,45 +6,53 @@
 
 <h1>MOVIE LIST</h1>
 
+@if(auth()->check() && auth()->user()->role == 'admin')
+    <a href="/admin/movies/create">Tambah Movie</a>
+@endif
+
 <hr>
+
+<div style="display:flex; flex-wrap:wrap; gap:30px;">
 
 @foreach ($movies as $movie)
 
-    <img src="{{ $movie->poster }}" width="200">
+    <div style="width:220px;">
 
-    <h2>{{ $movie->title }}</h2>
+        <img src="{{ $movie->poster }}" width="200">
 
-    <p>{{ $movie->genre }}</p>
+        <h2>{{ $movie->title }}</h2>
 
-    <a href="/movies/{{ $movie->id }}">
-        Detail
-    </a>
+        <p>{{ $movie->genre }}</p>
 
-    @if(auth()->check() && auth()->user()->role == 'admin')
+        <a href="/movies/{{ $movie->id }}">
+            Detail
+        </a>
 
-    |
+        @if(auth()->check() && auth()->user()->role == 'admin')
 
-    <a href="{{ route('admin.movies.edit', $movie->id) }}">
-        Edit
-    </a>
+            |
 
-    |
+            <a href="{{ route('admin.movies.edit', $movie->id) }}">
+                Edit
+            </a>
 
-    <form action="{{ route('admin.movies.destroy', $movie->id) }}" method="POST" style="display:inline;">
-        @csrf
-        @method('DELETE')
+            |
 
-        <button type="submit">
-            Delete
-        </button>
-    </form>
+            <form action="{{ route('admin.movies.destroy', $movie->id) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
 
-    @endif
+                <button type="submit">
+                    Delete
+                </button>
+            </form>
 
-    <hr>
+        @endif
+
+    </div>
 
 @endforeach
 
+</div>
+
 @endsection
-
-
