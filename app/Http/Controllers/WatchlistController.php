@@ -15,7 +15,7 @@ class WatchlistController extends Controller
             'movie_id' => $movie->id,
         ]);
 
-        return redirect()->back()->with('success', 'Added to watchlist.');
+        return redirect()->back()->with('watchlist_success', 'Added to watchlist.');
     }
 
     public function destroy(Watchlist $watchlist)

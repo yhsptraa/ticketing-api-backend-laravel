@@ -5,6 +5,10 @@
 @section('content')
     <h1>Profile</h1>
 
+    @if (session('success'))
+        <p style="color: green;">{{ session('success') }}</p>
+    @endif
+
     <p><strong>Name:</strong> {{ $user->name }}</p>
     <p><strong>Email:</strong> {{ $user->email }}</p>
     <p><strong>Role:</strong> {{ ucfirst($user->role) }}</p>

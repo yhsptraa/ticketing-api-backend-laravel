@@ -21,11 +21,15 @@
     <div>
         <label>Rating</label><br>
         @for ($i = 1; $i <= 5; $i++)
+        <div>
             <label>
-                <input type="radio" name="rating" value="{{ $i }}" {{ $review->rating == $i ? 'checked' : '' }} required>
+                <input type="radio" name="rating" value="{{ $i }}"
+                {{ $review->rating == $i ? 'checked' : '' }}>
                 {{ str_repeat('⭐', $i) }}
             </label>
-        @endfor
+        </div>
+    @endfor
+    
     </div>
 
     <br>

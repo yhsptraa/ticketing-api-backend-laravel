@@ -14,6 +14,10 @@
 
 <p>Duration: {{ $movie->duration }} minutes</p>
 
+@if (session('watchlist_success'))
+    <p style="color: green;">{{ session('watchlist_success') }}</p>
+@endif
+
 @auth
 <form action="{{ route('watchlist.store', $movie->id) }}" method="POST">
     @csrf
@@ -22,8 +26,6 @@
     </button>
 </form>
 @endauth
-
-<hr>
 
 <hr>
 
@@ -80,20 +82,24 @@
 
 <h2>Reviews</h2>
 
-@if (session('success'))
-    <p style="color: green;">{{ session('success') }}</p>
+@if (session('review_success'))
+    <p style="color: green;">{{ session('review_success') }}</p>
 @endif
 
 @forelse ($movie->reviews as $review)
     <p><strong>{{ $review->user->name }}</strong> — Rating: {{ $review->rating }}/5</p>
     <p>{{ $review->comment }}</p>
     @if(auth()->check() && auth()->user()->id == $review->user_id)
-        <a href="{{ route('reviews.edit', $review->id) }}">Edit Review</a>
+        <a href="{{ route('reviews.edit', $review->id) }}">
+            Edit Review
+        </a>
         |
         <form action="{{ route('reviews.destroy', $review->id) }}" method="POST" style="display:inline;">
             @csrf
             @method('DELETE')
-            <button type="submit">Delete Review</button>
+            <button type="submit">
+                Delete Review
+            </button>
         </form>
     @endif
     <hr>
@@ -135,7 +141,9 @@
                 <textarea name="comment" rows="4" required>{{ old('comment') }}</textarea>
             </div>
             <br>
-            <button type="submit">Submit Review</button>
+            <button type="submit">
+                Submit Review
+            </button>
         </form>
     @else
         <p>You have already reviewed this movie.</p>

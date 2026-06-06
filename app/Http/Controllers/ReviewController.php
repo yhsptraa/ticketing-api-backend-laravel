@@ -23,7 +23,7 @@ class ReviewController extends Controller
             'comment'  => $request->comment,
         ]);
 
-        return redirect()->back()->with('success', 'Review added successfully.');
+        return redirect()->back()->with('review_success', 'Review added successfully.');
     }
 
     public function edit(Review $review)
