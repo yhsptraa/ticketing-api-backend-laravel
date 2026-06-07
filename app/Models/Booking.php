@@ -38,6 +38,8 @@ class Booking extends Model {
                     ->withTimestamps();
     }
 
-    // payment func
+    public function payment(): HasOne {
+        return $this->hasOne(Payment::class);
+    }
 
 }
