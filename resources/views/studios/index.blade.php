@@ -24,6 +24,8 @@
 
     <p>Description : {{ $studio->description }}</p>
 
+    <a href="/studios/{{ $studio->id }}">Detail</a>
+
     @if(auth()->check() && auth()->user()->role == 'admin')
 
         <a href="{{ route('admin.studios.edit', $studio->id) }}">

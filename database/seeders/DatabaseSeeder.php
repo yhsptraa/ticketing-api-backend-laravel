@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             MovieSeeder::class,
             scheduleSeeder::class,
-            StudioSeeder::class
+            StudioSeeder::class,
+            SeatSeeder::class,
         ]);
     }
 }

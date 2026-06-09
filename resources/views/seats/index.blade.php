@@ -20,6 +20,8 @@
     <p>Seat Number : {{ $seat->seat_number }}</p>
     <p>Status : {{ $seat->is_available ? 'Available' : 'Occupied' }}</p>
 
+    <a href="/seats/{{ $seat->id }}">Detail</a>
+
     @auth
         @if(auth()->check() && auth()->user()->role == 'admin')
 
