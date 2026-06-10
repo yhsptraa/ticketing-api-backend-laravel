@@ -42,6 +42,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/watchlist', [WatchlistController::class, 'index'])->name('watchlist.index');
     Route::post('/watchlist/{movie}', [WatchlistController::class, 'store'])->name('watchlist.store');
     Route::delete('/watchlist/{watchlist}', [WatchlistController::class, 'destroy'])->name('watchlist.destroy');
+
+        // Booking Routes
+    Route::get('/bookings', [BookingController::class, 'index']);
+    Route::post('/bookings', [BookingController::class, 'store']);
+    Route::get('/bookings/{id}', [BookingController::class, 'show']);
+    Route::delete('/bookings/{id}', [BookingController::class, 'cancel']);
 });
 
 // Admin routes
