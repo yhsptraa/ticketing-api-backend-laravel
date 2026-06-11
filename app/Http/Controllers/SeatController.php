@@ -8,9 +8,13 @@ use Illuminate\Http\Request;
 
 class SeatController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $seats = Seat::with('studio')->get();
+        if($request->studio_id){
+            $seats = Seat::where('studio_id', $request->studio_id)->with('studio')->get();
+        }else{
+            $seats = Seat::with('studio')->get();
+        }
         return view('seats.index', compact('seats'));
     }
 

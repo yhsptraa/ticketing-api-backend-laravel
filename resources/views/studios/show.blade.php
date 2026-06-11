@@ -6,6 +6,14 @@
 
 <h1>Detail Studio</h1>
 
+@auth
+    @if(auth()->check() && auth()->user()->role == 'admin')
+        <a href="/admin/seats?studio_id={{ $studio->id }}">Seat List</a>
+    @endif
+@endauth
+
+<a href="/studios">Kembali</a><br>
+
 @if($studio->studio_image)
     <img src="{{ $studio->studio_image }}" width="200" alt="{{ $studio->studio_name }}">
 @endif
@@ -31,7 +39,5 @@
         @endforeach
     </div>
 @endforeach
-
-<a href="/studios">Kembali</a>
 
 @endsection

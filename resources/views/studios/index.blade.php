@@ -7,8 +7,11 @@
 <h1>STUDIO LIST</h1>
 
 @if(auth()->check() && auth()->user()->role == 'admin')
-    <a href="/admin/studios/create">Tambah Studio</a><br><br>
+    <a href="/admin/studios/create">Tambah Studio</a><br>
+    <a href="{{ route('seats.index') }}">Seat List</a><br>
 @endif
+<a href="/">Kembali</a>
+<br><br>
 
 @foreach ($studios as $studio)
 

@@ -11,6 +11,8 @@
         <a href="/admin/seats/create">Tambah Seat</a>
     @endif
 @endauth
+<br>
+<a href="/studios">Kembali ke Studio</a>
 <br><br>
 
 @foreach ($seats as $seat)

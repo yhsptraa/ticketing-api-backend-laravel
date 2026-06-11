@@ -11,6 +11,10 @@
 <p>Seat Number : {{ $seat->seat_number }}</p>
 <p>Status : {{ $seat->is_available ? 'Available' : 'Occupied' }}</p>
 
-<a href="/seats">Kembali</a>
-
+<a href="{{ route('studios.show', $seat->studio_id) }}">Kembali ke studio</a>
+@auth
+    @if(auth()->check() && auth()->user()->role == 'admin')
+    <a href="/admin/seats?studio_id={{ $seat->studio_id }}">Kembali ke seat list</a>
+    @endif
+@endauth
 @endsection
