@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
+    public function index()
+    {
+        $reviews = Auth::user()->reviews()->with('movie')->latest()->paginate(5);
+        return view('user.reviews', compact('reviews'));
+    }
+
     public function store(Request $request, Movie $movie)
     {
         $request->validate([

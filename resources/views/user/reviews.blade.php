@@ -31,6 +31,8 @@
 
         <hr>
     @endforeach
+
+    {{ $reviews->links() }}
 @endif
 
 @endsection

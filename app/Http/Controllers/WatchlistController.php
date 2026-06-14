@@ -35,7 +35,7 @@ class WatchlistController extends Controller
             ->watchlists()
             ->with('movie')
             ->latest()
-            ->get();
+            ->paginate(8);
 
         return view('user.watchlists', compact('watchlists'));
     }

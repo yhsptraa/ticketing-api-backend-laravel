@@ -80,7 +80,7 @@
 
 @endforeach
 
-<h2>Reviews</h2>
+<h2>Reviews ({{ $movie->reviews->count() }})</h2>
 
 @if (session('review_success'))
     <p style="color: green;">{{ session('review_success') }}</p>

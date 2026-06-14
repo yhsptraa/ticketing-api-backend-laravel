@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('user.profile.edit');
     Route::put('/profile', [UserController::class, 'updateProfile'])->name('user.profile.update');
     Route::get('/history', [UserController::class, 'bookingHistory'])->name('user.history');
-    Route::get('/my-reviews', [UserController::class, 'myReviews'])->name('user.reviews');
+    Route::get('/my-reviews', [ReviewController::class, 'index'])->name('user.reviews');
     Route::post('/movies/{movie}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
     Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
