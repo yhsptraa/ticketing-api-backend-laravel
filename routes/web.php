@@ -43,11 +43,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/watchlist/{movie}', [WatchlistController::class, 'store'])->name('watchlist.store');
     Route::delete('/watchlist/{watchlist}', [WatchlistController::class, 'destroy'])->name('watchlist.destroy');
 
-        // Booking Routes
+    // Booking 
     Route::get('/bookings', [BookingController::class, 'index']);
     Route::post('/bookings', [BookingController::class, 'store']);
     Route::get('/bookings/{id}', [BookingController::class, 'show']);
     Route::delete('/bookings/{id}', [BookingController::class, 'cancel']);
+
+    // Payment 
+    Route::post('/payments', [PaymentController::class, 'store']);
+    Route::get('/payments/{id}', [PaymentController::class, 'show']);
 });
 
 // Admin routes
