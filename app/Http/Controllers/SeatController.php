@@ -35,7 +35,7 @@ class SeatController extends Controller
                 ]);
             }
         }
-    return redirect('/admin/seats');
+    return redirect('/admin/seats?studio_id='. $request->studio_id)->with('success', 'Seat updated successfully');
     }
 
     public function edit($id)
@@ -49,14 +49,14 @@ class SeatController extends Controller
     {
         $seat = Seat::findOrFail($id);
         $seat->update($request->all());
-        return redirect('/admin/seats');
+        return redirect('/admin/seats?studio_id='. $seat->studio_id)->with('success', 'Seat updated successfully');
     }
 
     public function destroy(string $id)
     {
         $seat = Seat::findOrFail($id);
         $seat->delete();
-        return redirect('/admin/seats');
+        return redirect('/admin/seats?studio_id='. $seat->studio_id)->with('success', 'Seat deleted successfully');
     }
 
     public function show($id)

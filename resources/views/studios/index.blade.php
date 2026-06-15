@@ -4,6 +4,10 @@
 
 @section('content')
 
+@if(session('success'))
+    {{ session('success') }}
+@endif
+
 <h1>STUDIO LIST</h1>
 
 @if(auth()->check() && auth()->user()->role == 'admin')

@@ -4,6 +4,10 @@
 
 @section('content')
 
+@if(session('success'))
+    {{ session('success') }}
+@endif
+
 <h1>SEAT LIST</h1>
 
 @auth

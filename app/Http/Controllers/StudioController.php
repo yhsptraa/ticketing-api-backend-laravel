@@ -22,7 +22,7 @@ class StudioController
             'is_active' => $request->is_active,
             'image' => $request->studio_image,
         ]);
-        return redirect('/admin/studios');
+        return redirect('/admin/studios')->with('success', 'Studio created successfully');
     }
 
     public function show($id)
@@ -46,13 +46,13 @@ class StudioController
     {
         $studio = Studio::findOrFail($id);
         $studio->update($request->all());
-        return redirect('/admin/studios');
+        return redirect('/admin/studios')->with('success', 'Studio updated successfully');
     }
 
     public function destroy(string $id)
     {
         $studio = Studio::findOrFail($id);
         $studio->delete();
-        return redirect('/admin/studios');
+        return redirect('/admin/studios')->with('success', 'Studio deleted successfully');
     }
 }
