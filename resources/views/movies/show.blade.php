@@ -62,9 +62,11 @@
 
     @if(auth()->check())
 
+    <a href="{{ route('bookings.showtimes', $movie->id) }}">
         <button>
             Buy Ticket
         </button>
+    </a>
 
     @else
 

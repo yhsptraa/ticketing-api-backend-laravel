@@ -5,8 +5,7 @@ namespace App\Service;
 use App\Models\Booking;
 use App\Models\BookingSeat;
 use App\Models\Schedule;
-use App\Models\Seat;
-
+use App\Models\Payment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Carbon\carbon;
@@ -25,7 +24,7 @@ class BookingService {
         $bookedSeatIds = $this->getBookedSeatIds($scheduleId);
         $BookedSeats = [];
 
-            foreach ($setsIds as $seatId) {
+            foreach ($seatIds as $seatId) {
                 if (in_array($seatId, $bookedSeatIds)) {
                     $seat = Seat::find($seatId);
                     $BookedSeats[]  = $seat ? $seat->seat_code : $seatId;
@@ -44,19 +43,15 @@ class BookingService {
         return $code;
     }
 
-    public function createBooking(int $userId, int $scheduleId, array $seatIds): Booking {
+    public function createBooking(int $userId, int $scheduleId, array $seatIds, int $totalPrice): Booking {
         $schedule = Schedule::findOrFail($scheduleId);
         
-        $unavailable = $this->checkSeatAvailability($scheduleId, $seatId);
+        $unavailable = $this->checkSeatAvailability($scheduleId, $seatIds);
 
         if(!empty($unavailable)) {
-            throw new \Exception(
-                json_encode([
-                    'message' => 'beberapa kursi sudah di booking',
-                    'unavailabe_seats' => $unavailable,
-                ]),
-                409
-            );
+            throw ValidationException::withMessages([
+                'seats' => 'beberapa kursi sudah dipesan, silahkan pilih kursi lain',
+            ]);
 
             $price = $schedule->price;
             $totalPrice = $price * count($seatIds);

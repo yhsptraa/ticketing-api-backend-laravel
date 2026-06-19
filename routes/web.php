@@ -9,6 +9,8 @@ use App\Http\Controllers\StudioController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WatchlistController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\PaymentController;
 
 Route::get('/', fn() => redirect()->route('movies.index'));
 
@@ -28,6 +30,18 @@ Route::resource('schedules', ScheduleController::class)->only(['index', 'show'])
 Route::resource('studios', StudioController::class)->only(['index', 'show']);
 Route::resource('seats', SeatController::class)->only(['index', 'show']);
 
+
+// Temp
+Route::get('/bookings/showtimes/{movie}', [BookingController::class, 'showSchedule'])->name('bookings.showtimes');
+Route::post('/bookings/showtimes/select', [BookingController::class, 'selectShowtime'])->name('bookings.showtimes.select');
+
+Route::get('/bookings/seats', [BookingController::class, 'showSeats'])->name('bookings.seats');
+Route::post('/bookings/seats/select', [BookingController::class, 'selectSeats'])->name('bookings.seats.select');
+
+Route:: get('/bookings/payment', [BookingController::class, 'showPayment'])->name('bookings.payment');
+Route:: post('bookings/payment/process', [BookingController::class, 'processPayment'])->name('bookings.payment.process');
+
+Route::get('/bookings/ticket/{booking}', [BookingController::class, 'showTicket'])->name('bookings.ticket');
 // Customer routes (butuh login)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
@@ -43,15 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/watchlist/{movie}', [WatchlistController::class, 'store'])->name('watchlist.store');
     Route::delete('/watchlist/{watchlist}', [WatchlistController::class, 'destroy'])->name('watchlist.destroy');
 
-    // Booking 
-    Route::get('/bookings', [BookingController::class, 'index']);
-    Route::post('/bookings', [BookingController::class, 'store']);
-    Route::get('/bookings/{id}', [BookingController::class, 'show']);
-    Route::delete('/bookings/{id}', [BookingController::class, 'cancel']);
 
-    // Payment 
-    Route::post('/payments', [PaymentController::class, 'store']);
-    Route::get('/payments/{id}', [PaymentController::class, 'show']);
 });
 
 // Admin routes

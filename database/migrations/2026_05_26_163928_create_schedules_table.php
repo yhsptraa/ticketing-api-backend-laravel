@@ -10,13 +10,10 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('movie_id');
-
-            $table->string('studio');
+            $table->foreignId('studio_id');
             $table->string('show_time');
             $table->integer('price');
-
             $table->timestamps();
         });
     }
