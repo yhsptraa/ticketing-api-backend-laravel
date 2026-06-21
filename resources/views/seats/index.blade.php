@@ -19,7 +19,11 @@
 <a href="/studios">Kembali ke Studio</a>
 <br><br>
 
+<div style="display:flex; flex-wrap:wrap; gap:20px;">
+
 @foreach ($seats as $seat)
+
+    <div style="width:100px;">
 
     <h2>{{ $seat->studio->studio_name ?? 'Studio Tidak Ada' }}</h2>
 
@@ -46,6 +50,7 @@
 
     <hr>
 
+</div>
 @endforeach
-
+</div>
 @endsection
