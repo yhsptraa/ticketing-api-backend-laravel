@@ -10,9 +10,8 @@
 
     <table>
         <tr><td>Kode Booking</td> <td>{{ $booking->booking_code }}</td></tr>
-        <tr><td>Film</td>         <td>{{ $booking->showtime->movie->title }}</td></tr>
-        <tr><td>Tanggal</td>      <td>{{ $booking->showtime->show_date }}</td></tr>
-        <tr><td>Jam</td>          <td>{{ $booking->showtime->show_time }}</td></tr>
+        <tr><td>Film</td>         <td>{{ $booking->schedule->movie->title }}</td></tr>
+        <tr><td>Jam</td>          <td>{{ $booking->schedule->show_time }}</td></tr>
         <tr>
             <td>Kursi</td>
             <td>{{ $booking->seats->pluck('seat_code')->join(', ') }}</td>
@@ -20,6 +19,9 @@
         <tr><td>Status</td>       <td>{{ $booking->status }}</td></tr>
     </table>
 
-    <a href="{{ route('movies.index') }}">OK</a>
+
+    <a href="{{ route('movies.index') }}">
+        <button>Ok</button>
+    </a>
 </body>
 </html>

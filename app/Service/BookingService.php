@@ -36,14 +36,11 @@ class BookingService {
     }
 
     public function generateBookingCode(): string {
-        do {
-            $code = now()->format('Ymd') . '-' . strtroupper(Str::random(6));
-        } while (Booking::where('booking_code', $code)->exist());
-
-        return $code;
+        return strtoupper(substr(bin2hex(random_bytes(4)), 0, 8));
     }
 
-    public function createBooking(int $userId, int $scheduleId, array $seatIds, int $totalPrice): Booking {
+    public function createBooking(int $userId, int $scheduleId, array $seatIds): Booking {
+
         $schedule = Schedule::findOrFail($scheduleId);
         
         $unavailable = $this->checkSeatAvailability($scheduleId, $seatIds);
@@ -52,12 +49,12 @@ class BookingService {
             throw ValidationException::withMessages([
                 'seats' => 'beberapa kursi sudah dipesan, silahkan pilih kursi lain',
             ]);
+        }
 
             $price = $schedule->price;
             $totalPrice = $price * count($seatIds);
 
             $expiredAt = Carbon::now()->addMinutes(15);
-
 
             return DB::transaction(function () use ($userId, $scheduleId, $seatIds, $totalPrice, $price, $expiredAt) {
             $booking = Booking::create([
@@ -84,7 +81,6 @@ class BookingService {
             return $booking->load(['schedule.movie', 'schedule.studio', 'seats']);
 
             });
-        }
 
     }
 

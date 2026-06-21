@@ -17,7 +17,6 @@
 </head>
 <body>
     <h2>{{ $showtime->movie->title }}</h2>
-    <p>{{ $showtime->show_time }}</p>
 
 <div style="padding-bottom: 2.5em;">▬▬▬ SCREEN ▬▬▬</div>
 
