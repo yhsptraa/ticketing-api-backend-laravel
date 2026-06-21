@@ -28,11 +28,10 @@ class BookingService {
                 if (in_array($seatId, $bookedSeatIds)) {
                     $seat = Seat::find($seatId);
                     $BookedSeats[]  = $seat ? $seat->seat_code : $seatId;
-
                 }
             }
 
-            return $BookedSeats;
+        return $BookedSeats;
     }
 
     public function generateBookingCode(): string {
@@ -81,8 +80,5 @@ class BookingService {
             return $booking->load(['schedule.movie', 'schedule.studio', 'seats']);
 
             });
-
     }
-
-    
 }

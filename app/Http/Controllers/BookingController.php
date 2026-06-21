@@ -111,4 +111,16 @@ class BookingController extends Controller {
         return view('bookings.detail', compact('booking'));
     }
 
+    public function history() {
+        $bookings = Booking::with([
+            'schedule.movie',
+            'seats'
+        ])
+        ->where('user_id', auth()->id())
+        ->latest()
+        ->get();
+
+        return view('user.history', compact('bookings'));
+    }
+
 }

@@ -49,8 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/bookings/showtimes/select', [BookingController::class, 'selectShowtime'])->name('bookings.showtimes.select');
     Route::get('/bookings/seats', [BookingController::class, 'showSeats'])->name('bookings.seats');
     Route::post('/bookings/seats/select', [BookingController::class, 'selectSeats'])->name('bookings.seats.select');
-    Route:: get('/bookings/payment', [BookingController::class, 'showPayment'])->name('bookings.payment');
-    Route:: post('bookings/payment/process', [BookingController::class, 'processPayment'])->name('bookings.payment.process');
+    Route::get('/bookings/payment', [BookingController::class, 'showPayment'])->name('bookings.payment');
+    Route::post('bookings/payment/process', [BookingController::class, 'processPayment'])->name('bookings.payment.process');
     Route::get('/bookings/{booking}/ticket', [BookingController::class, 'showTicket'])->name('bookings.ticket');
 });
 
