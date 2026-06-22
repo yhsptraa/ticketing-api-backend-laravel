@@ -33,7 +33,7 @@
 
 @foreach ($movie->schedules as $schedule)
 
-    <p>Studio : {{ $schedule->studio }}</p>
+   <p>Studio : {{ $schedule->studio->studio_name }}</p>
 
     <p>Time : {{ $schedule->show_time }}</p>
 

@@ -13,7 +13,7 @@
         <h2>{{ $movie->title }}</h2>
         @foreach ($schedules as $schedule)
             <div style="margin-bottom: 15px;">
-                <p>Studio : {{ $schedule->studio }}</p>
+                <p>Studio : </p>
 
                 <input type="radio" name="schedule_id" 
                 value="{{ $schedule->id }}">
