@@ -6,8 +6,8 @@
 
 <h1>MOVIE LIST</h1>
 
-@if(auth()->check() && auth()->user()->role == 'admin')
-    <a href="/admin/movies/create">Tambah Movie</a>
+@if(auth()->check() && auth()->user()->role == 'admin') <a href="/admin/movies/create">Tambah Movie</a>
+| <a href="/admin/schedules/create">Tambah Schedule</a>
 @endif
 
 <hr>
@@ -16,40 +16,42 @@
 
 @foreach ($movies as $movie)
 
-    <div style="width:220px;">
+```
+<div style="width:220px;">
 
-        <img src="{{ $movie->poster }}" width="200">
+    <img src="{{ $movie->poster }}" width="200">
 
-        <h2>{{ $movie->title }}</h2>
+    <h2>{{ $movie->title }}</h2>
 
-        <p>{{ $movie->genre }}</p>
+    <p>{{ $movie->genre }}</p>
 
-        <a href="/movies/{{ $movie->id }}">
-            Detail
+    <a href="/movies/{{ $movie->id }}">
+        Detail
+    </a>
+
+    @if(auth()->check() && auth()->user()->role == 'admin')
+
+        |
+
+        <a href="{{ route('admin.movies.edit', $movie->id) }}">
+            Edit
         </a>
 
-        @if(auth()->check() && auth()->user()->role == 'admin')
+        |
 
-            |
+        <form action="{{ route('admin.movies.destroy', $movie->id) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('DELETE')
 
-            <a href="{{ route('admin.movies.edit', $movie->id) }}">
-                Edit
-            </a>
+            <button type="submit">
+                Delete
+            </button>
+        </form>
 
-            |
+    @endif
 
-            <form action="{{ route('admin.movies.destroy', $movie->id) }}" method="POST" style="display:inline;">
-                @csrf
-                @method('DELETE')
-
-                <button type="submit">
-                    Delete
-                </button>
-            </form>
-
-        @endif
-
-    </div>
+</div>
+```
 
 @endforeach
 

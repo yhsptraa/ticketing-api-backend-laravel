@@ -27,7 +27,7 @@ class ScheduleController
     {
         Schedule::create([
             'movie_id' => $request->movie_id,
-            'studio' => $request->studio,
+            'studio_id' => $request->studio_id,
             'show_time' => $request->show_time,
             'price' => $request->price
         ]);
@@ -58,7 +58,7 @@ class ScheduleController
 
         $schedule->update([
             'movie_id' => $request->movie_id,
-            'studio' => $request->studio,
+            'studio_id' => $request->studio_id,
             'show_time' => $request->show_time,
             'price' => $request->price
         ]);
