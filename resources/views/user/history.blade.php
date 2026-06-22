@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{ $booking->booking_code }}</td>
                         <td>{{ $booking->schedule->movie->title }}</td>
-                        <td>{{ $booking->schedule->studio }}</td>
+                        <td>{{ $booking->schedule->studio->studio_name ?? '-' }}</td>
                         <td>{{ $booking->schedule->show_time }}</td>
                         <td>Rp {{ number_format($booking->total_price, 0, ',', '.') }}</td>
                         <td>{{ ucfirst($booking->status) }}</td>
