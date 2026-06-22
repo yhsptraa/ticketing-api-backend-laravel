@@ -16,7 +16,6 @@
 
 @foreach ($movies as $movie)
 
-```
 <div style="width:220px;">
 
     <img src="{{ $movie->poster }}" width="200">
@@ -51,7 +50,6 @@
     @endif
 
 </div>
-```
 
 @endforeach
 
