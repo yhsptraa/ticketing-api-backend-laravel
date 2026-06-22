@@ -19,7 +19,21 @@
 
     <br><br>
 
-    <input type="text" name="studio" value="{{ $schedule->studio }}">
+    <select name="studio_id">
+
+        @foreach ($studios as $studio)
+
+            <option value="{{ $studio->id }}"
+                {{ $studio->id == $schedule->studio_id ? 'selected' : '' }}>
+
+                {{ $studio->studio_name }}
+
+            </option>
+
+        @endforeach
+
+    </select>
+
     <br><br>
 
     <input type="text" name="show_time" value="{{ $schedule->show_time }}">
