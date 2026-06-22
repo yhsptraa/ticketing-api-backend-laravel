@@ -15,7 +15,17 @@
 
     <br><br>
 
-    <input type="text" name="studio" placeholder="Studio">
+   <select name="studio_id">
+
+    @foreach ($studios as $studio)
+
+        <option value="{{ $studio->id }}">
+            {{ $studio->studio_name }}
+        </option>
+
+    @endforeach
+
+</select>
     <br><br>
 
     <input type="text" name="show_time" placeholder="Jam Tayang">

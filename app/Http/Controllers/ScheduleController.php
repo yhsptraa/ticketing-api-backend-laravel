@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Models\Movie;
+use App\Models\studio;
 
 class ScheduleController
 {
@@ -19,7 +20,9 @@ class ScheduleController
     public function create()
     {
         $movies = Movie::all();
-        return view('schedules.create', compact('movies'));
+        $studios = studio::all();
+
+        return view('schedules.create', compact('movies', 'studios'));
     }
 
     // simpan schedule
@@ -47,8 +50,9 @@ class ScheduleController
     {
         $schedule = Schedule::findOrFail($id);
         $movies = Movie::all();
+        $studios = studio::all();
 
-        return view('schedules.edit', compact('schedule', 'movies'));
+        return view('schedules.edit', compact('schedule', 'movies', 'studios'));
     }
 
     // update schedule

@@ -16,7 +16,7 @@
 
     <h2>{{ $schedule->movie->title ?? 'Movie Tidak Ada' }}</h2>
 
-    <p>Studio : {{ $schedule->studio }}</p>
+    <p>Studio : {{ $schedule->studio->studio_name ?? '-' }}</p>
 
     <p>Jam : {{ $schedule->show_time }}</p>
 
