@@ -27,13 +27,14 @@
 <p><strong>Status:</strong> {{ $studio->is_active ? 'Active' : 'Inactive' }}</p>
 
 <hr>
-<h3>Screen</h3>
+<h3 style="text-align:center;"> Screen</h3>
 <hr>
 
 @foreach ($studio->seats->groupBy(fn($seat) => substr($seat->seat_number, 0, 1)) as $row => $seats)
-    <div style="margin-bottom:10px;">
+    <div style="margin-bottom:10px; text-align:center;">
         @foreach ($seats as $seat)
-            <a href="{{route('seats.show', $seat->id)}}">
+            <a href="{{route('seats.show', $seat->id)}}" style="display:inline-block; 
+                width:50px; text-align:center; text-decoration:none;">
                 {{ $seat->seat_number }}
             </a>
         @endforeach

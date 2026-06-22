@@ -17,38 +17,40 @@
 <a href="/">Kembali</a>
 <br><br>
 
-@foreach ($studios as $studio)
+<div style="display:flex; flex-wrap:wrap; gap:30px;">
 
-    <td>
-        @if($studio->image)
-            <img src="{{ $studio->image }}" width="300">
+    @foreach ($studios as $studio)
+
+        <div style="width:300px;">
+
+            @if($studio->image)
+                <img src="{{ $studio->image }}" style="width:300px; height:200px;" >
+            @endif
+
+        <h2>{{ $studio->studio_name }}</h2>
+
+        <p>Capacity : {{ $studio->capacity }}</p>
+
+        <p>Description : {{ $studio->description }}</p>
+
+        <a href="/studios/{{ $studio->id }}">Detail</a>
+
+        @if(auth()->check() && auth()->user()->role == 'admin')
+
+            <a href="{{ route('admin.studios.edit', $studio->id) }}">
+                Edit
+            </a>
+
+            <form method="POST" action="{{ route('admin.studios.destroy', $studio->id) }}" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Delete</button>
+            </form>
+
         @endif
-    </td>
 
-    <h2>{{ $studio->name }}</h2>
-
-    <p>Capacity : {{ $studio->capacity }}</p>
-
-    <p>Description : {{ $studio->description }}</p>
-
-    <a href="/studios/{{ $studio->id }}">Detail</a>
-
-    @if(auth()->check() && auth()->user()->role == 'admin')
-
-        <a href="{{ route('admin.studios.edit', $studio->id) }}">
-            Edit
-        </a>
-
-        <form method="POST" action="{{ route('admin.studios.destroy', $studio->id) }}" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Delete</button>
-        </form>
-
-    @endif
-
-    <hr>
-
+        <hr>
+</div>
 @endforeach
-
+</div>
 @endsection
