@@ -60,6 +60,10 @@
 
     @endif
 
+    
+    <hr>
+    
+    @endforeach
     @if(auth()->check())
 
     <a href="{{ route('bookings.showtimes', $movie->id) }}">
@@ -77,10 +81,6 @@
         </a>
 
     @endif
-
-    <hr>
-
-@endforeach
 
 <h2>Reviews ({{ $movie->reviews->count() }})</h2>
 

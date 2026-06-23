@@ -12,8 +12,36 @@ class ScheduleSeeder extends Seeder
         Schedule::create([
             'movie_id' => 1,
             'studio_id' => 1,
+            'show_time' => '2026-05-28 09:00:00',
+            'price' => 50000
+        ]);
+
+        Schedule::create([
+            'movie_id' => 1,
+            'studio_id' => 1,
+            'show_time' => '2026-05-28 15:00:00',
+            'price' => 50000
+        ]);
+
+        Schedule::create([
+            'movie_id' => 1,
+            'studio_id' => 1,
             'show_time' => '2026-05-28 19:00:00',
             'price' => 50000
+        ]);
+
+        Schedule::create([
+            'movie_id' => 2,
+            'studio_id' => 2,
+            'show_time' => '2026-05-29 10:30:00',
+            'price' => 60000
+        ]);
+
+        Schedule::create([
+            'movie_id' => 2,
+            'studio_id' => 2,
+            'show_time' => '2026-05-29 16:00:00',
+            'price' => 60000
         ]);
 
         Schedule::create([
@@ -26,7 +54,21 @@ class ScheduleSeeder extends Seeder
         Schedule::create([
             'movie_id' => 3,
             'studio_id' => 3,
-            'show_time' => '2026-05-30 18:15:00',
+            'show_time' => '2026-05-30 07:15:00',
+            'price' => 55000
+        ]);
+
+          Schedule::create([
+            'movie_id' => 3,
+            'studio_id' => 3,
+            'show_time' => '2026-05-30 12:55:00',
+            'price' => 55000
+        ]);
+
+          Schedule::create([
+            'movie_id' => 3,
+            'studio_id' => 3,
+            'show_time' => '2026-05-30 18:30:00',
             'price' => 55000
         ]);
     }

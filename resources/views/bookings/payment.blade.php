@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Booking-Payment</title>
 </head>
 <body>
     <h2>Ringkasan Pembayaran</h2>
 
-    <table>
+    <table style="margin-bottom:1em">
         <tr><td>Film</td>    <td>{{ $summary['movie']->title }}</td></tr>
-        <tr><td>Jadwal</td>     <td>{{ $summary['showtime']->show_time }}</td></tr>
+        <tr><td>Jadwal</td>     <td>{{ \Carbon\Carbon::parse($summary['showtime']->show_time)->format('H:i') }}</td></tr>
         <tr>
             <td>Kursi</td>
-            <td>{{ $summary['seats']->pluck('seat_code')->join(', ') }}</td>
+            <td>{{ $summary['seats']->pluck('seat_number')->join(', ') }}</td>
         </tr>
         <tr>
             <td>Total</td>

@@ -10,7 +10,7 @@ use App\Models\Studio;
 use App\Models\Seat;
 use App\Service\BookingService;
 use App\Http\Request\Booking\selectShowtimeRequest;
-use App\Http\Request\Booking\selectSeatsRequest;
+use App\Http\Request\Booking\selectSeatRequest;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller {
@@ -30,7 +30,7 @@ class BookingController extends Controller {
         $showtime = Schedule::findOrFail($request->schedule_id);
 
         session()->put('booking.movie_id', $showtime->movie_id);
-        session()->put('booking.schedule_id', $request->schedule_id);
+        session()->put('booking.schedule_id', (int) $request->schedule_id);
         
         return redirect()->route('bookings.seats');
     }
@@ -43,7 +43,7 @@ class BookingController extends Controller {
         $showtime = Schedule::with('movie')
             ->findOrFail(session('booking.schedule_id'));
 
-        $studio = Studio::where('studio_name', $showtime->studio)->firstOrFail();
+        $studio = $showtime->studio;
 
         $seats = Seat::where('studio_id', $studio->id)->get();
 
@@ -88,11 +88,21 @@ class BookingController extends Controller {
     }
 
     public function processPayment() {
+        // $booking = $this->bookingService->createBooking(
+        //     auth()->id(),
+        //     session('booking.schedule_id'),
+        //     session('booking.seat_ids'),
+        //     session('booking.total_price'),
+        // );
+        $scheduleId = (int) session('booking.schedule_id');
+        $seatIds    = (array) session('booking.seat_ids');
+        $totalPrice = session('booking.total_price');
+
         $booking = $this->bookingService->createBooking(
             auth()->id(),
-            session('booking.schedule_id'),
-            session('booking.seat_ids'),
-            session('booking.total_price'),
+            $scheduleId,
+            $seatIds,
+            $totalPrice
         );
 
         $booking->update([
