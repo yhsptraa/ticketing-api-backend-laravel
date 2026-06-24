@@ -88,12 +88,6 @@ class BookingController extends Controller {
     }
 
     public function processPayment() {
-        // $booking = $this->bookingService->createBooking(
-        //     auth()->id(),
-        //     session('booking.schedule_id'),
-        //     session('booking.seat_ids'),
-        //     session('booking.total_price'),
-        // );
         $scheduleId = (int) session('booking.schedule_id');
         $seatIds    = (array) session('booking.seat_ids');
         $totalPrice = session('booking.total_price');
